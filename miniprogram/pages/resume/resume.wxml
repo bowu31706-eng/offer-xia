@@ -1,0 +1,67 @@
+<!-- resume.wxml - 简历优化页 -->
+<view class="container">
+
+  <!-- 顶部说明 -->
+  <view class="tip-banner">
+    <view class="tip-icon">💡</view>
+    <view class="tip-text">将简历文字内容粘贴进来，AI 会针对 AI 产品经理岗位给出具体优化建议</view>
+  </view>
+
+  <!-- ── 输入区域 ──────────────────────────────────────────────────────── -->
+  <view class="card">
+    <view class="section-label">目标公司 <text class="optional">（选填）</text></view>
+    <input
+      class="input-box"
+      placeholder="例如：字节跳动（不填则给通用建议）"
+      value="{{companyName}}"
+      bindinput="onCompanyInput"
+      maxlength="30"
+    />
+  </view>
+
+  <view class="card">
+    <view class="section-label">粘贴简历内容</view>
+    <view class="section-hint">将简历中的文字内容全选复制，粘贴到此处即可</view>
+    <textarea
+      class="input-box resume-textarea"
+      placeholder="粘贴你的简历文字内容..."
+      value="{{resumeText}}"
+      bindinput="onResumeInput"
+      auto-height
+      maxlength="8000"
+    />
+    <view class="word-count">{{resumeText.length}} / 8000 字</view>
+  </view>
+
+  <!-- 开始优化按钮 -->
+  <button
+    class="btn-primary"
+    bindtap="onStartOptimize"
+    disabled="{{isLoading}}"
+  >
+    {{isLoading ? '⏳ AI 正在分析简历...' : '✨ 开始优化简历'}}
+  </button>
+
+  <!-- ── 结果区域 ──────────────────────────────────────────────────────── -->
+  <view id="resume-result" wx:if="{{showResult}}">
+
+    <view class="card result-card">
+      <view class="result-title">📊 简历优化报告</view>
+
+      <view wx:if="{{isLoading}}" class="loading-block">
+        <view class="loading-tip">AI 正在认真分析你的简历，请稍候...</view>
+        <view class="loading-hint">通常需要 15～30 秒</view>
+      </view>
+
+      <text wx:elif="{{result}}" class="result-text">{{result}}</text>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view wx:if="{{!isLoading && result}}" class="action-row">
+      <button class="btn-secondary" bindtap="onCopyResult">📋 复制建议</button>
+      <button class="btn-outline" bindtap="onReset">🔄 重新优化</button>
+    </view>
+
+  </view>
+
+</view>

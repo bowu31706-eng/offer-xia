@@ -1,0 +1,18 @@
+# 不上传到 GitHub 的文件
+
+# API Key 配置文件（保护隐私！）
+backend/.env
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 微信开发者工具个人配置（含隐私信息，不上传）
+miniprogram/project.private.config.json
+
+# 系统文件
+.DS_Store
+Thumbs.db

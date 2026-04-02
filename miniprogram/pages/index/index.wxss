@@ -1,0 +1,109 @@
+/* index.wxss - 首页样式 */
+
+.container {
+  padding: 32rpx;
+  min-height: 100vh;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 24rpx;
+  padding: 48rpx 40rpx;
+  margin-bottom: 40rpx;
+  color: #fff;
+}
+
+.banner-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+.banner-sub {
+  font-size: 26rpx;
+  opacity: 0.85;
+}
+
+/* 区块标题 */
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 20rpx;
+}
+
+/* 功能卡片 */
+.feature-card {
+  display: flex;
+  align-items: center;
+  padding: 36rpx 32rpx;
+  cursor: pointer;
+}
+
+.feature-icon {
+  font-size: 52rpx;
+  margin-right: 28rpx;
+  flex-shrink: 0;
+}
+
+.feature-info {
+  flex: 1;
+}
+
+.feature-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 8rpx;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+
+.feature-arrow {
+  font-size: 44rpx;
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+
+/* 步骤卡片 */
+.steps-card {
+  padding: 32rpx;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 28rpx;
+}
+
+.step:last-child {
+  margin-bottom: 0;
+}
+
+.step-num {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 24rpx;
+  margin-top: 4rpx;
+}
+
+.step-text {
+  font-size: 28rpx;
+  color: var(--color-text-main);
+  line-height: 1.6;
+  flex: 1;
+}

@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/jd/jd",
+    "pages/resume/resume"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarTitleText": "offer侠",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f7fa"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4f46e5",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/jd/jd",
+        "text": "JD备考",
+        "iconPath": "assets/icons/jd.png",
+        "selectedIconPath": "assets/icons/jd-active.png"
+      },
+      {
+        "pagePath": "pages/resume/resume",
+        "text": "简历优化",
+        "iconPath": "assets/icons/resume.png",
+        "selectedIconPath": "assets/icons/resume-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

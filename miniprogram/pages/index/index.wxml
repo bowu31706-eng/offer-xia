@@ -1,0 +1,52 @@
+<!-- index.wxml - 首页 -->
+<view class="container">
+
+  <!-- 顶部 Banner -->
+  <view class="banner">
+    <view class="banner-title">🗡️ offer侠</view>
+    <view class="banner-sub">智能分析 JD · 生成面试题 · 优化简历</view>
+  </view>
+
+  <!-- 功能入口卡片 -->
+  <view class="section-title">选择功能</view>
+
+  <view class="card feature-card" bindtap="goToJD">
+    <view class="feature-icon">📋</view>
+    <view class="feature-info">
+      <view class="feature-name">JD 备考分析</view>
+      <view class="feature-desc">输入公司和 JD，自动生成备考报告和面试题</view>
+    </view>
+    <view class="feature-arrow">›</view>
+  </view>
+
+  <view class="card feature-card" bindtap="goToResume">
+    <view class="feature-icon">📄</view>
+    <view class="feature-info">
+      <view class="feature-name">简历优化</view>
+      <view class="feature-desc">上传简历文本，获取针对目标岗位的优化建议</view>
+    </view>
+    <view class="feature-arrow">›</view>
+  </view>
+
+  <!-- 使用说明 -->
+  <view class="section-title">使用步骤</view>
+  <view class="card steps-card">
+    <view class="step">
+      <view class="step-num">1</view>
+      <view class="step-text">输入目标公司名称和岗位 JD</view>
+    </view>
+    <view class="step">
+      <view class="step-num">2</view>
+      <view class="step-text">AI 自动搜索公司动态、解析 JD 要求</view>
+    </view>
+    <view class="step">
+      <view class="step-num">3</view>
+      <view class="step-text">获取高频面试题 + 个性化备考建议</view>
+    </view>
+    <view class="step">
+      <view class="step-num">4</view>
+      <view class="step-text">上传简历，获取针对性优化方案</view>
+    </view>
+  </view>
+
+</view>

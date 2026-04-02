@@ -1,0 +1,92 @@
+<!-- jd.wxml - JD 备考分析页 -->
+<view class="container">
+
+  <!-- ── 输入区域 ──────────────────────────────────────────────────────── -->
+  <view class="card">
+    <view class="section-label">目标公司</view>
+    <input
+      class="input-box"
+      placeholder="例如：字节跳动、百度、阿里巴巴"
+      value="{{companyName}}"
+      bindinput="onCompanyInput"
+      maxlength="30"
+    />
+  </view>
+
+  <view class="card">
+    <view class="section-label">粘贴岗位 JD</view>
+    <view class="section-hint">将招聘网站上的完整 JD 文字复制粘贴到此处</view>
+    <textarea
+      class="input-box jd-textarea"
+      placeholder="粘贴 JD 内容到这里..."
+      value="{{jdText}}"
+      bindinput="onJDInput"
+      auto-height
+      maxlength="5000"
+    />
+    <view class="word-count">{{jdText.length}} / 5000 字</view>
+  </view>
+
+  <!-- 开始分析按钮 -->
+  <button
+    class="btn-primary"
+    bindtap="onStartAnalysis"
+    disabled="{{step1Loading || step2Loading || step3Loading}}"
+  >
+    {{(step1Loading || step2Loading || step3Loading) ? loadingText : '🚀 开始分析'}}
+  </button>
+
+  <!-- ── 结果区域 ──────────────────────────────────────────────────────── -->
+  <view id="result-section" wx:if="{{showResult}}" class="result-section">
+
+    <!-- 步骤进度条 -->
+    <view class="progress-bar">
+      <view class="progress-step {{companyInfo ? 'done' : (step1Loading ? 'active' : '')}}">
+        <view class="dot"></view>
+        <text>公司动态</text>
+      </view>
+      <view class="progress-line"></view>
+      <view class="progress-step {{jdAnalysis ? 'done' : (step2Loading ? 'active' : '')}}">
+        <view class="dot"></view>
+        <text>JD 解析</text>
+      </view>
+      <view class="progress-line"></view>
+      <view class="progress-step {{questions ? 'done' : (step3Loading ? 'active' : '')}}">
+        <view class="dot"></view>
+        <text>面试题</text>
+      </view>
+    </view>
+
+    <!-- 公司动态 -->
+    <view class="card result-card">
+      <view class="result-title">📡 公司动态</view>
+      <view wx:if="{{step1Loading}}" class="loading-tip">正在搜索中...</view>
+      <text wx:elif="{{companyInfo}}" class="result-text">{{companyInfo}}</text>
+      <view wx:else class="empty-tip">等待中...</view>
+    </view>
+
+    <!-- JD 解析 -->
+    <view class="card result-card">
+      <view class="result-title">🔍 JD 核心解析</view>
+      <view wx:if="{{step2Loading}}" class="loading-tip">AI 正在分析 JD...</view>
+      <text wx:elif="{{jdAnalysis}}" class="result-text">{{jdAnalysis}}</text>
+      <view wx:else class="empty-tip">等待中...</view>
+    </view>
+
+    <!-- 面试题 -->
+    <view class="card result-card">
+      <view class="result-title">💡 高频面试题 & 备考建议</view>
+      <view wx:if="{{step3Loading}}" class="loading-tip">AI 正在生成面试题...</view>
+      <text wx:elif="{{questions}}" class="result-text">{{questions}}</text>
+      <view wx:else class="empty-tip">等待中...</view>
+    </view>
+
+    <!-- 操作按钮（分析完成后显示） -->
+    <view wx:if="{{!step1Loading && !step2Loading && !step3Loading && companyInfo}}" class="action-row">
+      <button class="btn-secondary" bindtap="onCopyAll">📋 复制全部</button>
+      <button class="btn-outline" bindtap="onReset">🔄 重新分析</button>
+    </view>
+
+  </view>
+
+</view>
