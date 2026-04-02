@@ -7,7 +7,7 @@ App({
   globalData: {
     // 后端接口地址
     // 本地测试时用 localhost，部署后换成真实域名
-    baseUrl: 'http://127.0.0.1:8000',
+    baseUrl: 'https://offer-xia-production.up.railway.app',
   },
 
   onLaunch() {
