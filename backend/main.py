@@ -5,6 +5,8 @@
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -42,10 +44,17 @@ class ResumeRequest(BaseModel):
     company_name: str = ""      # 目标公司（可选）
 
 
-# ── 接口 1：健康检查（用来测试服务是否正常运行）──────────────────────────────
+# ── 提供前端网页 ──────────────────────────────────────────────────────────────
 @app.get("/")
+def serve_frontend():
+    index_path = os.path.join(os.path.dirname(__file__), "static", "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"status": "ok", "message": "职前探 API 运行正常"}
+
+@app.get("/health")
 def health_check():
-    return {"status": "ok", "message": "AI 求职备考助手 API 运行正常"}
+    return {"status": "ok", "message": "职前探 API 运行正常"}
 
 
 # ── 接口 2：搜索公司动态 ──────────────────────────────────────────────────────
