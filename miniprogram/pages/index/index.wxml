@@ -3,8 +3,8 @@
 
   <!-- 顶部 Banner -->
   <view class="banner">
-    <view class="banner-title">🎓 及第AI</view>
-    <view class="banner-sub">智能分析 JD · 生成面试题 · 优化简历</view>
+    <view class="banner-title">🔍 职情报</view>
+    <view class="banner-sub">搜索公司动态 · 解析岗位要求 · 优化简历</view>
   </view>
 
   <!-- 功能入口卡片 -->

@@ -11,6 +11,6 @@ App({
   },
 
   onLaunch() {
-    console.log('及第AI启动');
+    console.log('职情报启动');
   },
 });
