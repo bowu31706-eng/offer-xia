@@ -11,6 +11,6 @@ App({
   },
 
   onLaunch() {
-    console.log('职情报启动');
+    console.log('职前探启动');
   },
 });

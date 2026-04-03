@@ -13,7 +13,7 @@ import services
 # 加载 .env 文件中的 API Key
 load_dotenv()
 
-app = FastAPI(title="职情报 API", version="1.0.0")
+app = FastAPI(title="职前探 API", version="1.0.0")
 
 # 允许跨域请求（微信小程序调用后端时需要）
 app.add_middleware(
