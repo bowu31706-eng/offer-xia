@@ -8,350 +8,844 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f0f4f8;
-      color: #1a202c;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: #111827;
       min-height: 100vh;
     }
 
-    header {
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      color: white;
-      padding: 24px 20px;
+    /* ========== HOME ========== */
+    .hero {
       text-align: center;
+      padding: 56px 20px 36px;
     }
 
-    header h1 { font-size: 28px; font-weight: 700; letter-spacing: 2px; }
-    header p { margin-top: 6px; font-size: 14px; color: #a0aec0; }
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      border-radius: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(79,70,229,0.25);
+    }
 
-    nav {
+    .hero h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #6b7280;
+    }
+
+    .categories {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 8px 24px 60px;
+    }
+
+    .category { margin-bottom: 40px; }
+
+    .category-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
       display: flex;
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
-      overflow-x: auto;
+      align-items: center;
+      gap: 8px;
     }
 
-    nav button {
+    .category-label::after {
+      content: '';
       flex: 1;
-      min-width: 100px;
-      padding: 14px 10px;
-      border: none;
-      background: none;
-      font-size: 14px;
-      color: #718096;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
-      white-space: nowrap;
+      height: 1px;
+      background: #f3f4f6;
     }
 
-    nav button.active {
-      color: #4f46e5;
-      border-bottom-color: #4f46e5;
-      font-weight: 600;
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 12px;
     }
-
-    .page { display: none; max-width: 720px; margin: 0 auto; padding: 24px 16px; }
-    .page.active { display: block; }
 
     .card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      background: #fafafa;
+      border: 1.5px solid #f0f0f0;
+      border-radius: 14px;
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
     }
 
-    .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #2d3748; }
+    .card:hover {
+      background: #fff;
+      border-color: #c7d2fe;
+      box-shadow: 0 4px 16px rgba(79,70,229,0.10);
+      transform: translateY(-2px);
+    }
 
-    input, textarea, select {
+    .card-icon { font-size: 26px; margin-bottom: 2px; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    .badge-ready { background: #d1fae5; color: #065f46; }
+    .badge-soon  { background: #fef3c7; color: #92400e; }
+
+    /* ========== FEATURE PAGE ========== */
+    #feature-page { display: none; }
+
+    .feat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #f3f4f6;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #6b7280;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .back-btn:hover { background: #f3f4f6; color: #111827; }
+
+    .feat-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .feat-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    /* ========== FORM ========== */
+    .form-group { margin-bottom: 16px; }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
       width: 100%;
       padding: 10px 14px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
       font-size: 14px;
-      color: #2d3748;
+      color: #111827;
+      background: #fafafa;
       outline: none;
-      transition: border 0.2s;
-      background: #f7fafc;
+      transition: all 0.15s;
+      font-family: inherit;
     }
 
-    input:focus, textarea:focus, select:focus {
+    input:focus, textarea:focus {
       border-color: #4f46e5;
-      background: white;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.08);
     }
 
     textarea { resize: vertical; min-height: 120px; }
 
-    .btn {
-      display: block;
+    .row { display: flex; gap: 12px; }
+    .row .form-group { flex: 1; }
+
+    .submit-btn {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       background: #4f46e5;
-      color: white;
+      color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 12px;
-      transition: background 0.2s;
-    }
-
-    .btn:hover { background: #4338ca; }
-    .btn:disabled { background: #a5b4fc; cursor: not-allowed; }
-
-    .result {
-      background: #f7fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 16px;
-      font-size: 14px;
-      line-height: 1.8;
-      white-space: pre-wrap;
-      display: none;
-    }
-
-    .result.show { display: block; }
-
-    .loading {
-      text-align: center;
-      color: #718096;
-      padding: 20px;
-      display: none;
-    }
-
-    .loading.show { display: block; }
-
-    .spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #e2e8f0;
-      border-top-color: #4f46e5;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-right: 8px;
-      vertical-align: middle;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .error {
-      background: #fff5f5;
-      border: 1px solid #fed7d7;
-      color: #c53030;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-top: 12px;
-      font-size: 14px;
-      display: none;
-    }
-
-    .error.show { display: block; }
-
-    .tag {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-right: 6px;
+      font-family: inherit;
+      transition: background 0.15s;
       margin-top: 4px;
     }
 
-    .row { display: flex; gap: 10px; }
-    .row input, .row select { flex: 1; }
+    .submit-btn:hover { background: #4338ca; }
+    .submit-btn:disabled { background: #a5b4fc; cursor: not-allowed; }
 
+    /* ========== OUTPUT ========== */
+    .loading-box {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .loading-box.show { display: flex; }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #e5e7eb;
+      border-top-color: #4f46e5;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-box {
+      display: none;
+      margin-top: 20px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .error-box.show { display: block; }
+
+    .result-box {
+      display: none;
+      margin-top: 20px;
+      background: #f9fafb;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.85;
+      white-space: pre-wrap;
+      color: #374151;
+    }
+    .result-box.show { display: block; }
+
+    .soon-box {
+      display: none;
+      margin-top: 20px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14px;
+      color: #92400e;
+    }
+    .soon-box.show { display: block; }
+
+    /* ========== FOOTER ========== */
     footer {
       text-align: center;
-      padding: 24px;
-      color: #a0aec0;
+      padding: 20px;
+      color: #d1d5db;
       font-size: 12px;
+    }
+
+    /* ========== MOBILE ========== */
+    @media (max-width: 520px) {
+      .hero h1 { font-size: 26px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .row { flex-direction: column; gap: 0; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🔍 职前探</h1>
-  <p>搜索公司动态 · 解析岗位要求 · 优化简历</p>
-</header>
-
-<nav>
-  <button class="active" onclick="switchTab('search')">🏠 首页搜索</button>
-  <button onclick="switchTab('jd')">📋 JD 解析</button>
-  <button onclick="switchTab('questions')">💬 面试题</button>
-  <button onclick="switchTab('resume')">📄 简历优化</button>
-</nav>
-
-<!-- 首页：搜索公司动态 -->
-<div id="search" class="page active">
-  <div class="card">
-    <h2>搜索公司动态</h2>
-    <input type="text" id="searchInput" placeholder="输入公司名称，如：字节跳动" />
-    <button class="btn" onclick="doSearch()">搜索</button>
-    <div class="loading" id="searchLoading"><span class="spinner"></span>搜索中，请稍候...</div>
-    <div class="error" id="searchError"></div>
-    <div class="result" id="searchResult"></div>
+<!-- =============== HOME =============== -->
+<div id="home">
+  <div class="hero">
+    <div class="hero-icon">🔍</div>
+    <h1>职前探</h1>
+    <p>15 个求职工具，帮你有备而来</p>
   </div>
-</div>
 
-<!-- JD 解析 -->
-<div id="jd" class="page">
-  <div class="card">
-    <h2>解析岗位 JD</h2>
-    <textarea id="jdInput" placeholder="将招聘 JD 粘贴到这里..."></textarea>
-    <button class="btn" onclick="doAnalyzeJD()">解析 JD</button>
-    <div class="loading" id="jdLoading"><span class="spinner"></span>解析中，请稍候...</div>
-    <div class="error" id="jdError"></div>
-    <div class="result" id="jdResult"></div>
-  </div>
-</div>
+  <div class="categories">
 
-<!-- 面试题生成 -->
-<div id="questions" class="page">
-  <div class="card">
-    <h2>生成面试题</h2>
-    <div class="row">
-      <input type="text" id="qCompany" placeholder="目标公司，如：腾讯" />
-      <input type="text" id="qJob" placeholder="目标岗位，如：产品经理" value="AI产品经理" />
+    <!-- 求职前期 -->
+    <div class="category">
+      <div class="category-label">求职前期</div>
+      <div class="cards-grid">
+        <div class="card" onclick="openFeature('intro')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🙋</div>
+          <div class="card-title">自我介绍生成</div>
+          <div class="card-desc">生成60秒结构化自我介绍</div>
+        </div>
+        <div class="card" onclick="openFeature('cover')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">✉️</div>
+          <div class="card-title">求职信生成</div>
+          <div class="card-desc">针对公司和岗位定制求职信</div>
+        </div>
+        <div class="card" onclick="openFeature('match')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">📊</div>
+          <div class="card-title">匹配度评估</div>
+          <div class="card-desc">简历与JD的匹配度打分</div>
+        </div>
+        <div class="card" onclick="openFeature('salary')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">💰</div>
+          <div class="card-title">薪资参考</div>
+          <div class="card-desc">搜索岗位市场薪资范围</div>
+        </div>
+      </div>
     </div>
-    <button class="btn" onclick="doGenQuestions()">生成面试题</button>
-    <div class="loading" id="qLoading"><span class="spinner"></span>生成中，请稍候...</div>
-    <div class="error" id="qError"></div>
-    <div class="result" id="qResult"></div>
-  </div>
-</div>
 
-<!-- 简历优化 -->
-<div id="resume" class="page">
-  <div class="card">
-    <h2>简历优化建议</h2>
-    <div class="row" style="margin-bottom:10px">
-      <input type="text" id="rJob" placeholder="目标岗位" value="AI产品经理" />
-      <input type="text" id="rCompany" placeholder="目标公司（可选）" />
+    <!-- 面试准备 -->
+    <div class="category">
+      <div class="category-label">面试准备</div>
+      <div class="cards-grid">
+        <div class="card" onclick="openFeature('search')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🔍</div>
+          <div class="card-title">公司动态</div>
+          <div class="card-desc">搜索目标公司近期新闻动态</div>
+        </div>
+        <div class="card" onclick="openFeature('jd')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">📋</div>
+          <div class="card-title">JD 解析</div>
+          <div class="card-desc">提炼岗位核心能力要求</div>
+        </div>
+        <div class="card" onclick="openFeature('questions')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">💬</div>
+          <div class="card-title">面试题生成</div>
+          <div class="card-desc">按公司和岗位生成高频题</div>
+        </div>
+        <div class="card" onclick="openFeature('star')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">⭐</div>
+          <div class="card-title">STAR 回答</div>
+          <div class="card-desc">用STAR结构组织面试答案</div>
+        </div>
+        <div class="card" onclick="openFeature('askback')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🤔</div>
+          <div class="card-title">反问问题</div>
+          <div class="card-desc">生成聪明的反问面试官问题</div>
+        </div>
+        <div class="card" onclick="openFeature('tech')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🔧</div>
+          <div class="card-title">技术题讲解</div>
+          <div class="card-desc">解题思路与参考答案</div>
+        </div>
+      </div>
     </div>
-    <textarea id="resumeInput" placeholder="将简历内容粘贴到这里..." style="min-height:180px"></textarea>
-    <button class="btn" onclick="doOptimizeResume()">获取优化建议</button>
-    <div class="loading" id="rLoading"><span class="spinner"></span>分析中，请稍候...</div>
-    <div class="error" id="rError"></div>
-    <div class="result" id="rResult"></div>
+
+    <!-- 面试复盘 -->
+    <div class="category">
+      <div class="category-label">面试复盘</div>
+      <div class="cards-grid">
+        <div class="card" onclick="openFeature('resume')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">📄</div>
+          <div class="card-title">简历优化</div>
+          <div class="card-desc">针对目标岗位的优化建议</div>
+        </div>
+        <div class="card" onclick="openFeature('review')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🔄</div>
+          <div class="card-title">面试复盘</div>
+          <div class="card-desc">分析回答质量给出改进建议</div>
+        </div>
+        <div class="card" onclick="openFeature('offer')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">⚖️</div>
+          <div class="card-title">Offer 对比</div>
+          <div class="card-desc">多个 offer 的利弊分析</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 行业市场 -->
+    <div class="category">
+      <div class="category-label">行业市场</div>
+      <div class="cards-grid">
+        <div class="card" onclick="openFeature('industry')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">📰</div>
+          <div class="card-title">行业动态</div>
+          <div class="card-desc">搜索行业近期趋势与新闻</div>
+        </div>
+        <div class="card" onclick="openFeature('compete')">
+          <span class="badge badge-ready">可用</span>
+          <div class="card-icon">🏢</div>
+          <div class="card-title">竞品对比</div>
+          <div class="card-desc">多家公司维度横向对比</div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <footer>职前探 · 求职备考助手</footer>
 </div>
 
-<footer>职前探 · 求职备考助手</footer>
+
+<!-- =============== FEATURE PAGE =============== -->
+<div id="feature-page">
+  <div class="feat-header">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <span class="feat-title" id="feat-title"></span>
+  </div>
+  <div class="feat-body" id="feat-body"></div>
+</div>
+
 
 <script>
-  const BASE_URL = '';
+const BASE_URL = '';
 
-  function switchTab(tab) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    event.target.classList.add('active');
-  }
+/* ========== Feature definitions ========== */
+const FEATURES = {
 
-  function showLoading(id, show) {
-    document.getElementById(id + 'Loading').classList.toggle('show', show);
-  }
-
-  function showResult(id, text) {
-    const el = document.getElementById(id + 'Result');
-    el.textContent = text;
-    el.classList.add('show');
-  }
-
-  function showError(id, msg) {
-    const el = document.getElementById(id + 'Error');
-    el.textContent = msg;
-    el.classList.add('show');
-  }
-
-  function clearState(id) {
-    document.getElementById(id + 'Result').classList.remove('show');
-    document.getElementById(id + 'Error').classList.remove('show');
-  }
-
-  async function post(endpoint, body) {
-    const res = await fetch(BASE_URL + endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if (!res.ok) throw new Error('请求失败，请稍后重试');
-    const json = await res.json();
-    return json.data;
-  }
-
-  async function doSearch() {
-    const val = document.getElementById('searchInput').value.trim();
-    if (!val) return alert('请输入公司名称');
-    clearState('search');
-    showLoading('search', true);
-    try {
-      const data = await post('/search', { company_name: val });
-      showResult('search', data);
-    } catch(e) {
-      showError('search', e.message);
-    } finally {
-      showLoading('search', false);
+  /* ----- 已上线 ----- */
+  search: {
+    title: '🔍 公司动态',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">公司名称</label>
+        <input type="text" id="fi1" placeholder="如：字节跳动" />
+      </div>
+      <button class="submit-btn" id="f-btn">搜索动态</button>`,
+    submit: async () => {
+      const v = g('fi1');
+      if (!v) return err('请输入公司名称');
+      return await api('/search', { company_name: v });
     }
-  }
+  },
 
-  async function doAnalyzeJD() {
-    const val = document.getElementById('jdInput').value.trim();
-    if (!val) return alert('请输入 JD 内容');
-    clearState('jd');
-    showLoading('jd', true);
-    try {
-      const data = await post('/analyze-jd', { jd_text: val });
-      showResult('jd', data);
-    } catch(e) {
-      showError('jd', e.message);
-    } finally {
-      showLoading('jd', false);
+  jd: {
+    title: '📋 JD 解析',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">招聘 JD 内容</label>
+        <textarea id="fi1" placeholder="将招聘 JD 粘贴到这里..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">解析 JD</button>`,
+    submit: async () => {
+      const v = g('fi1');
+      if (!v) return err('请输入 JD 内容');
+      return await api('/analyze-jd', { jd_text: v });
     }
-  }
+  },
 
-  async function doGenQuestions() {
-    const company = document.getElementById('qCompany').value.trim();
-    const job = document.getElementById('qJob').value.trim();
-    if (!company) return alert('请输入目标公司');
-    clearState('q');
-    showLoading('q', true);
-    try {
-      const data = await post('/generate-questions', { company_name: company, job_type: job });
-      showResult('q', data);
-    } catch(e) {
-      showError('q', e.message);
-    } finally {
-      showLoading('q', false);
+  questions: {
+    title: '💬 面试题生成',
+    ready: true,
+    render: () => `
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">目标公司</label>
+          <input type="text" id="fi1" placeholder="如：腾讯" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目标岗位</label>
+          <input type="text" id="fi2" placeholder="如：产品经理" value="AI产品经理" />
+        </div>
+      </div>
+      <button class="submit-btn" id="f-btn">生成面试题</button>`,
+    submit: async () => {
+      const company = g('fi1'), job = g('fi2');
+      if (!company) return err('请输入目标公司');
+      return await api('/generate-questions', { company_name: company, job_type: job });
     }
-  }
+  },
 
-  async function doOptimizeResume() {
-    const resume = document.getElementById('resumeInput').value.trim();
-    const job = document.getElementById('rJob').value.trim();
-    const company = document.getElementById('rCompany').value.trim();
-    if (!resume) return alert('请输入简历内容');
-    clearState('r');
-    showLoading('r', true);
-    try {
-      const data = await post('/optimize-resume', { resume_text: resume, job_type: job, company_name: company });
-      showResult('r', data);
-    } catch(e) {
-      showError('r', e.message);
-    } finally {
-      showLoading('r', false);
+  resume: {
+    title: '📄 简历优化',
+    ready: true,
+    render: () => `
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">目标岗位</label>
+          <input type="text" id="fi1" placeholder="如：AI产品经理" value="AI产品经理" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目标公司（可选）</label>
+          <input type="text" id="fi2" placeholder="如：字节跳动" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">简历内容</label>
+        <textarea id="fi3" placeholder="将简历内容粘贴到这里..." style="min-height:180px"></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">获取优化建议</button>`,
+    submit: async () => {
+      const job = g('fi1'), company = g('fi2'), resume = g('fi3');
+      if (!resume) return err('请输入简历内容');
+      return await api('/optimize-resume', { resume_text: resume, job_type: job, company_name: company });
     }
-  }
+  },
 
-  // 回车触发搜索
-  document.getElementById('searchInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doSearch();
+  // --- 求职前期 ---
+  intro: {
+    title: '🙋 自我介绍生成',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">目标岗位</label>
+        <input type="text" id="fi1" placeholder="如：产品经理" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">简历 / 个人背景</label>
+        <textarea id="fi2" placeholder="粘贴简历内容或简要描述你的背景..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">生成自我介绍</button>`,
+    submit: async () => {
+      const job = g('fi1'), bg = g('fi2');
+      if (!job) return err('请输入目标岗位');
+      if (!bg)  return err('请填写个人背景');
+      return await api('/intro', { job_type: job, background_text: bg });
+    }
+  },
+
+  cover: {
+    title: '✉️ 求职信生成',
+    ready: true,
+    render: () => `
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">目标公司</label>
+          <input type="text" id="fi1" placeholder="如：字节跳动" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目标岗位</label>
+          <input type="text" id="fi2" placeholder="如：产品经理" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">个人背景 / 简历</label>
+        <textarea id="fi3" placeholder="粘贴简历或描述核心经历..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">生成求职信</button>`,
+    submit: async () => {
+      const company = g('fi1'), job = g('fi2'), bg = g('fi3');
+      if (!company || !job) return err('请填写目标公司和岗位');
+      if (!bg) return err('请填写个人背景');
+      return await api('/cover-letter', { company_name: company, job_type: job, background_text: bg });
+    }
+  },
+
+  match: {
+    title: '📊 匹配度评估',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">招聘 JD</label>
+        <textarea id="fi1" placeholder="粘贴招聘 JD..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">我的简历</label>
+        <textarea id="fi2" placeholder="粘贴简历内容..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">评估匹配度</button>`,
+    submit: async () => {
+      const jd = g('fi1'), resume = g('fi2');
+      if (!jd)     return err('请输入 JD 内容');
+      if (!resume) return err('请输入简历内容');
+      return await api('/match', { jd_text: jd, resume_text: resume });
+    }
+  },
+
+  salary: {
+    title: '💰 薪资参考',
+    ready: true,
+    render: () => `
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">目标公司</label>
+          <input type="text" id="fi1" placeholder="如：阿里巴巴" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目标岗位</label>
+          <input type="text" id="fi2" placeholder="如：产品经理" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">城市（可选）</label>
+        <input type="text" id="fi3" placeholder="如：北京" />
+      </div>
+      <button class="submit-btn" id="f-btn">查询薪资参考</button>`,
+    submit: async () => {
+      const company = g('fi1'), job = g('fi2'), city = g('fi3');
+      if (!company || !job) return err('请填写目标公司和岗位');
+      return await api('/salary', { company_name: company, job_type: job, city });
+    }
+  },
+
+  // --- 面试准备（新增） ---
+  star: {
+    title: '⭐ STAR 回答生成',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">面试题目</label>
+        <textarea id="fi1" placeholder="如：请描述一次你推动跨团队协作的经历..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">相关经历（可选）</label>
+        <textarea id="fi2" placeholder="简要描述相关经历，AI将用STAR结构帮你组织..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">生成 STAR 回答</button>`,
+    submit: async () => {
+      const q = g('fi1'), exp = g('fi2');
+      if (!q) return err('请输入面试题目');
+      return await api('/star', { question: q, experience: exp });
+    }
+  },
+
+  askback: {
+    title: '🤔 反问问题',
+    ready: true,
+    render: () => `
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">目标公司</label>
+          <input type="text" id="fi1" placeholder="如：美团" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">目标岗位</label>
+          <input type="text" id="fi2" placeholder="如：产品经理" />
+        </div>
+      </div>
+      <button class="submit-btn" id="f-btn">生成反问问题</button>`,
+    submit: async () => {
+      const company = g('fi1'), job = g('fi2');
+      if (!company || !job) return err('请填写目标公司和岗位');
+      return await api('/askback', { company_name: company, job_type: job });
+    }
+  },
+
+  tech: {
+    title: '🔧 技术题讲解',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">题目内容</label>
+        <textarea id="fi1" placeholder="粘贴或输入技术 / 专业题..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">获取解题思路</button>`,
+    submit: async () => {
+      const q = g('fi1');
+      if (!q) return err('请输入题目内容');
+      return await api('/tech', { question_text: q });
+    }
+  },
+
+  // --- 面试复盘（新增） ---
+  review: {
+    title: '🔄 面试复盘',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">面试题目</label>
+        <textarea id="fi1" placeholder="输入面试官问了什么..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">你的回答</label>
+        <textarea id="fi2" placeholder="输入你当时的回答..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">获取改进建议</button>`,
+    submit: async () => {
+      const q = g('fi1'), a = g('fi2');
+      if (!q) return err('请输入面试题目');
+      if (!a) return err('请输入你的回答');
+      return await api('/review', { question: q, answer: a });
+    }
+  },
+
+  offer: {
+    title: '⚖️ Offer 对比',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">Offer A</label>
+        <textarea id="fi1" placeholder="公司、岗位、薪资、城市、发展前景等..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Offer B</label>
+        <textarea id="fi2" placeholder="公司、岗位、薪资、城市、发展前景等..."></textarea>
+      </div>
+      <button class="submit-btn" id="f-btn">分析对比</button>`,
+    submit: async () => {
+      const a = g('fi1'), b = g('fi2');
+      if (!a || !b) return err('请填写两个 offer 的信息');
+      return await api('/offer', { offer_a: a, offer_b: b });
+    }
+  },
+
+  // --- 行业市场（新增） ---
+  industry: {
+    title: '📰 行业动态',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">行业名称</label>
+        <input type="text" id="fi1" placeholder="如：新能源汽车、大模型、消费电子" />
+      </div>
+      <button class="submit-btn" id="f-btn">搜索行业动态</button>`,
+    submit: async () => {
+      const v = g('fi1');
+      if (!v) return err('请输入行业名称');
+      return await api('/industry', { industry_name: v });
+    }
+  },
+
+  compete: {
+    title: '🏢 竞品对比',
+    ready: true,
+    render: () => `
+      <div class="form-group">
+        <label class="form-label">公司 A</label>
+        <input type="text" id="fi1" placeholder="如：阿里巴巴" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">公司 B</label>
+        <input type="text" id="fi2" placeholder="如：腾讯" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">公司 C（可选）</label>
+        <input type="text" id="fi3" placeholder="如：字节跳动" />
+      </div>
+      <button class="submit-btn" id="f-btn">对比分析</button>`,
+    submit: async () => {
+      const a = g('fi1'), b = g('fi2'), c = g('fi3');
+      if (!a || !b) return err('请至少填写两家公司');
+      return await api('/compete', { company_a: a, company_b: b, company_c: c });
+    }
+  },
+};
+
+/* ========== Navigation ========== */
+function openFeature(key) {
+  const f = FEATURES[key];
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('feature-page').style.display = 'block';
+  document.getElementById('feat-title').textContent = f.title;
+
+  const body = document.getElementById('feat-body');
+  body.innerHTML = f.render() + `
+    <div class="soon-box"    id="f-soon">⏳ 该功能后端接口开发中，敬请期待~</div>
+    <div class="loading-box" id="f-loading"><div class="spinner"></div>处理中，请稍候...</div>
+    <div class="error-box"   id="f-error"></div>
+    <div class="result-box"  id="f-result"></div>`;
+
+  document.getElementById('f-btn').addEventListener('click', () => run(key));
+
+  // 回车快捷提交（单行输入框）
+  body.querySelectorAll('input').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') run(key); });
   });
+}
+
+function goHome() {
+  document.getElementById('feature-page').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+}
+
+/* ========== Submit ========== */
+async function run(key) {
+  const f = FEATURES[key];
+  reset();
+  if (!f.ready) {
+    show('f-soon');
+    return;
+  }
+  setBtn(true);
+  show('f-loading');
+  try {
+    const data = await f.submit();
+    if (data !== undefined) {
+      document.getElementById('f-result').textContent = data;
+      show('f-result');
+    }
+  } catch(e) {
+    document.getElementById('f-error').textContent = e.message;
+    show('f-error');
+  } finally {
+    hide('f-loading');
+    setBtn(false);
+  }
+}
+
+/* ========== Helpers ========== */
+const g   = id => document.getElementById(id)?.value.trim() || '';
+const err = msg => { throw new Error(msg); };
+const show = id => document.getElementById(id)?.classList.add('show');
+const hide = id => document.getElementById(id)?.classList.remove('show');
+const setBtn = disabled => { const b = document.getElementById('f-btn'); if(b) b.disabled = disabled; };
+
+function reset() {
+  ['f-soon','f-loading','f-error','f-result'].forEach(hide);
+}
+
+async function api(endpoint, body) {
+  const res = await fetch(BASE_URL + endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error('请求失败，请稍后重试');
+  const json = await res.json();
+  return json.data;
+}
 </script>
+
 </body>
 </html>

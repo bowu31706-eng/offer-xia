@@ -1,6 +1,5 @@
 # main.py
-# FastAPI 后端主程序
-# 定义 4 个 HTTP 接口，供微信小程序调用
+# FastAPI 后端主程序 — 职前探 全部 15 个功能接口
 
 import os
 from fastapi import FastAPI, HTTPException
@@ -12,12 +11,10 @@ from dotenv import load_dotenv
 
 import services
 
-# 加载 .env 文件中的 API Key
 load_dotenv()
 
-app = FastAPI(title="职前探 API", version="1.0.0")
+app = FastAPI(title="职前探 API", version="2.0.0")
 
-# 允许跨域请求（微信小程序调用后端时需要）
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,25 +23,76 @@ app.add_middleware(
 )
 
 
-# ── 请求体数据模型（定义每个接口接收什么参数）────────────────────────────────
+# ── 请求体数据模型 ────────────────────────────────────────────────────────────
 
+# 原有
 class SearchRequest(BaseModel):
-    company_name: str           # 公司名称，例如 "字节跳动"
+    company_name: str
 
 class JDRequest(BaseModel):
-    jd_text: str                # 完整 JD 文本
+    jd_text: str
 
 class QuestionRequest(BaseModel):
-    company_name: str           # 公司名称
-    job_type: str = "AI产品经理"  # 岗位名称，默认 AI 产品经理
+    company_name: str
+    job_type: str = "AI产品经理"
 
 class ResumeRequest(BaseModel):
-    resume_text: str            # 简历文本内容
-    job_type: str = "AI产品经理"  # 目标岗位
-    company_name: str = ""      # 目标公司（可选）
+    resume_text: str
+    job_type: str = "AI产品经理"
+    company_name: str = ""
+
+# 求职前期
+class IntroRequest(BaseModel):
+    job_type: str
+    background_text: str
+
+class CoverLetterRequest(BaseModel):
+    company_name: str
+    job_type: str
+    background_text: str
+
+class MatchRequest(BaseModel):
+    jd_text: str
+    resume_text: str
+
+class SalaryRequest(BaseModel):
+    company_name: str
+    job_type: str
+    city: str = ""
+
+# 面试准备
+class StarRequest(BaseModel):
+    question: str
+    experience: str = ""
+
+class AskBackRequest(BaseModel):
+    company_name: str
+    job_type: str
+
+class TechRequest(BaseModel):
+    question_text: str
+
+# 面试复盘
+class ReviewRequest(BaseModel):
+    question: str
+    answer: str
+
+class OfferRequest(BaseModel):
+    offer_a: str
+    offer_b: str
+
+# 行业市场
+class IndustryRequest(BaseModel):
+    industry_name: str
+
+class CompeteRequest(BaseModel):
+    company_a: str
+    company_b: str
+    company_c: str = ""
 
 
-# ── 提供前端网页 ──────────────────────────────────────────────────────────────
+# ── 前端托管 ──────────────────────────────────────────────────────────────────
+
 @app.get("/")
 def serve_frontend():
     index_path = os.path.join(os.path.dirname(__file__), "static", "index.html")
@@ -54,67 +102,134 @@ def serve_frontend():
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "message": "职前探 API 运行正常"}
+    return {"status": "ok", "message": "职前探 API 运行正常", "version": "2.0.0"}
 
 
-# ── 接口 2：搜索公司动态 ──────────────────────────────────────────────────────
+# ── 原有四个接口 ──────────────────────────────────────────────────────────────
+
 @app.post("/search")
 def search_company(req: SearchRequest):
-    """
-    搜索目标公司的近期动态。
-    小程序传入公司名称，返回搜索结果摘要。
-    """
     if not req.company_name.strip():
         raise HTTPException(status_code=400, detail="公司名称不能为空")
-
-    result = services.search_company(req.company_name)
-    return {"success": True, "data": result}
+    return {"success": True, "data": services.search_company(req.company_name)}
 
 
-# ── 接口 3：解析 JD ───────────────────────────────────────────────────────────
 @app.post("/analyze-jd")
 def analyze_jd(req: JDRequest):
-    """
-    解析职位描述（JD），提取核心能力要求和关键词。
-    小程序传入 JD 文本，返回结构化分析结果。
-    """
     if not req.jd_text.strip():
         raise HTTPException(status_code=400, detail="JD 内容不能为空")
-
-    result = services.analyze_jd(req.jd_text)
-    return {"success": True, "data": result}
+    return {"success": True, "data": services.analyze_jd(req.jd_text)}
 
 
-# ── 接口 4：生成面试题 ────────────────────────────────────────────────────────
 @app.post("/generate-questions")
 def generate_questions(req: QuestionRequest):
-    """
-    根据公司和岗位生成 10 道高频面试题及备考建议。
-    """
     if not req.company_name.strip():
         raise HTTPException(status_code=400, detail="公司名称不能为空")
-
-    result = services.generate_questions(req.company_name, req.job_type)
-    return {"success": True, "data": result}
+    return {"success": True, "data": services.generate_questions(req.company_name, req.job_type)}
 
 
-# ── 接口 5：优化简历 ──────────────────────────────────────────────────────────
 @app.post("/optimize-resume")
 def optimize_resume(req: ResumeRequest):
-    """
-    分析简历内容，针对目标岗位给出具体优化建议。
-    """
     if not req.resume_text.strip():
         raise HTTPException(status_code=400, detail="简历内容不能为空")
+    return {"success": True, "data": services.optimize_resume(req.resume_text, req.job_type, req.company_name)}
 
-    result = services.optimize_resume(req.resume_text, req.job_type, req.company_name)
-    return {"success": True, "data": result}
+
+# ── 求职前期 ──────────────────────────────────────────────────────────────────
+
+@app.post("/intro")
+def generate_intro(req: IntroRequest):
+    if not req.job_type.strip():
+        raise HTTPException(status_code=400, detail="目标岗位不能为空")
+    if not req.background_text.strip():
+        raise HTTPException(status_code=400, detail="请填写个人背景")
+    return {"success": True, "data": services.generate_intro(req.job_type, req.background_text)}
+
+
+@app.post("/cover-letter")
+def generate_cover_letter(req: CoverLetterRequest):
+    if not req.company_name.strip() or not req.job_type.strip():
+        raise HTTPException(status_code=400, detail="公司名称和目标岗位不能为空")
+    if not req.background_text.strip():
+        raise HTTPException(status_code=400, detail="请填写个人背景")
+    return {"success": True, "data": services.generate_cover_letter(req.company_name, req.job_type, req.background_text)}
+
+
+@app.post("/match")
+def evaluate_match(req: MatchRequest):
+    if not req.jd_text.strip():
+        raise HTTPException(status_code=400, detail="JD 内容不能为空")
+    if not req.resume_text.strip():
+        raise HTTPException(status_code=400, detail="简历内容不能为空")
+    return {"success": True, "data": services.evaluate_match(req.jd_text, req.resume_text)}
+
+
+@app.post("/salary")
+def search_salary(req: SalaryRequest):
+    if not req.company_name.strip() or not req.job_type.strip():
+        raise HTTPException(status_code=400, detail="公司名称和目标岗位不能为空")
+    return {"success": True, "data": services.search_salary(req.company_name, req.job_type, req.city)}
+
+
+# ── 面试准备 ──────────────────────────────────────────────────────────────────
+
+@app.post("/star")
+def generate_star(req: StarRequest):
+    if not req.question.strip():
+        raise HTTPException(status_code=400, detail="请输入面试题目")
+    return {"success": True, "data": services.generate_star_answer(req.question, req.experience)}
+
+
+@app.post("/askback")
+def generate_askback(req: AskBackRequest):
+    if not req.company_name.strip() or not req.job_type.strip():
+        raise HTTPException(status_code=400, detail="公司名称和目标岗位不能为空")
+    return {"success": True, "data": services.generate_askback_questions(req.company_name, req.job_type)}
+
+
+@app.post("/tech")
+def explain_tech(req: TechRequest):
+    if not req.question_text.strip():
+        raise HTTPException(status_code=400, detail="请输入题目内容")
+    return {"success": True, "data": services.explain_tech_question(req.question_text)}
+
+
+# ── 面试复盘 ──────────────────────────────────────────────────────────────────
+
+@app.post("/review")
+def review_interview(req: ReviewRequest):
+    if not req.question.strip():
+        raise HTTPException(status_code=400, detail="请输入面试题目")
+    if not req.answer.strip():
+        raise HTTPException(status_code=400, detail="请输入你的回答")
+    return {"success": True, "data": services.review_interview(req.question, req.answer)}
+
+
+@app.post("/offer")
+def compare_offers(req: OfferRequest):
+    if not req.offer_a.strip() or not req.offer_b.strip():
+        raise HTTPException(status_code=400, detail="请填写至少两个 offer 信息")
+    return {"success": True, "data": services.compare_offers(req.offer_a, req.offer_b)}
+
+
+# ── 行业市场 ──────────────────────────────────────────────────────────────────
+
+@app.post("/industry")
+def search_industry(req: IndustryRequest):
+    if not req.industry_name.strip():
+        raise HTTPException(status_code=400, detail="行业名称不能为空")
+    return {"success": True, "data": services.search_industry(req.industry_name)}
+
+
+@app.post("/compete")
+def compare_companies(req: CompeteRequest):
+    if not req.company_a.strip() or not req.company_b.strip():
+        raise HTTPException(status_code=400, detail="请至少填写两家公司")
+    return {"success": True, "data": services.compare_companies(req.company_a, req.company_b, req.company_c)}
 
 
 # ── 本地运行入口 ──────────────────────────────────────────────────────────────
+
 if __name__ == "__main__":
     import uvicorn
-    # 本地测试时运行：python main.py
-    # 访问 http://localhost:8000 查看接口
-    # 访问 http://localhost:8000/docs 查看自动生成的接口文档
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
